@@ -1,0 +1,308 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="chatClient.js"></script>
+<script src="profile.js"></script>
+<link rel="stylesheet" href="./reset.css" />
+<link rel="stylesheet" href="./chatClient.css" />
+<meta charset="UTF-8" />
+<!--김대륙-->
+<!--가장 바깥쪽 영역-->
+<div id="firstArea">
+  <!--가장 바깥쪽 상단 영역-->
+  <div id="profileArea">
+    <div id="profileButtons">
+      <div class="profile" id="loginProfileBtn" onclick="toggleModal('loginModal')">
+        <img
+          src="https://th.bing.com/th/id/OIP.6TwhoOQY72DwcJBG_kcwZwHaHa?pid=ImgDet&rs=1"
+          alt="프로필 사진"
+          id="profileImage"
+        />
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div id="profileRightArea">
+      <!--유저 정보 영역(왼쪽 아래)-->
+      <button id="come" onclick="toggleModal('modalCome')">초대</button>
+      <button id="shareButton" onclick="toggleModal('modalLinkRoom')">방합치기</button>
+      <button id="btnCreateRoom" onclick="toggleModal('modalCreateRoom')">
+        방 생성
+      </button>
+      <button id="bigCreateRoom" onclick="toggleModal('modalCreateBigRoom')">
+        큰 방 생성
+      </button>
+      <div id="settingButton" onclick="toggleModal('changeProfileModal')">⚙️</div>
+    </div>
+  </div>
+</div>
+
+<!--가장 바깥쪽 좌측 영역-->
+<div id="leftArea">
+  <div id="roomOptions"></div>
+  <a id="home" href="http://127.0.0.1:3000/">홈으로</a>
+</div>
+
+<!--두번째 바깥쪽 영역-->
+<div id="secondArea">
+  <!--두번째 바깥쪽 상단 영역-->
+  <div id="secondTop">
+    <div id="groupName"></div>
+    <div type = "button" id="quitButton">🚪</div>
+  </div>
+  <!--두번째 바깥쪽 좌측 영역-->
+  <div id="secondLeft">
+    <div id="roomArea">
+      <div id="roomTitleArea">
+        <h2 id="bigroomTitle">Big Rooms</h2>
+        <h2 id="linkedroomTitle">Linked Rooms</h2>
+      </div>
+      <div id="roomsArea">
+        <div id="bigRooms"></div>
+        <div id="linkedRooms"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--채팅 출력 영역-->
+<div id="message"></div>
+<div id="chatInput">
+  <input
+    type="text"
+    id="txtChat"
+    name="txtChat"
+    placeholder="메시지를 입력하세요..."
+  />
+</div>
+
+
+
+<!-- 로그인 폼 -->
+<div class="modalConcept modalProfile" id="loginModal">
+    <div class="modal-dialog" role="document">
+        <div class="modalContent">
+            <!-- 입력 폼 -->
+            <form id="loginForm" method="post">
+                <div class="form-group">
+                    <label for="login-nameInput">이름</label>
+                    <input type="text" id="login-nameInput" name="name" placeholder="이름을 입력하세요" class="form-control validate[required]"
+                        oninput="changeProfileName('login')" />
+                </div>
+                <div class="form-group">
+                    <label for="login-passwordInput">비밀번호</label>
+                    <input type="password" id="login-passwordInput" name="password" class="form-control" />
+                </div>
+                <!-- 저장, 닫기 버튼 -->
+                <button type="button" class="btn btn-success salvar" id="loginBtn" onclick="saveProfile()" >
+                    <i class="fa fa-check" aria-hidden="true"></i> 로그인
+                </button>
+                <button type="button" class="btn btn-danger" onclick="toggleModal('loginModal')">
+                    닫기
+                </button>
+                <p>아직 계정이 없나요? <a href="#" onclick="toggleModal('signupModal'); toggleModal('loginModal'); return false;">계정 만들기</a></p>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 회원가입 폼 -->
+<div class="modalConcept modalProfile" id="signupModal">
+    <div class="modal-dialog" role="document">
+        <div class="modalContent">
+            <!-- 입력 폼 -->
+            <form id="signupForm" method="post">
+                <div class="profile-section">
+                    <!-- 버튼 클릭해서 사진 파일 열기 -->
+                    <input type="file" id="fileInput" onchange="changeProfileImage()" style="display: none" />
+                    <img src="https://cdn2.iconfinder.com/data/icons/seo-and-marketing-glyph-6/32/94-512.png" id="rotateChange"
+                        onclick="triggerFileInput()" />
+                    <h2 id="profileName">닉네임</h2>
+                </div>
+                <div class="form-group">
+                    <label for="signup-nameInput">이름</label>
+                    <input type="text" id="signup-nameInput" name="name" placeholder="새 이름을 입력하세요" class="form-control validate[required]"
+                        oninput="changeProfileName('signup')" />
+                </div>
+                <div class="form-group">
+                    <label for="signup-passwordInput">비밀번호</label>
+                    <input type="password" id="signup-passwordInput" name="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="confirmPasswordInput">비밀번호 확인</label>
+                    <input type="password" id="confirmPasswordInput" name="confirmPassword" class="form-control"
+                        oninput="checkPassword()" />
+                    <span id="passwordWarning" class="password-warning"></span>
+                </div>
+                <!-- 저장, 닫기 버튼 -->
+                <button type="button" class="btn btn-success salvar" id="signup-saveProfile" onclick="saveProfile()">
+                    <i class="fa fa-check" aria-hidden="true"></i> 가입하기
+                </button>
+                <button type="button" class="btn btn-danger" onclick="toggleModal('signupModal')">
+                    닫기
+                </button>
+                <p>이미 계정이 있나요? <a href="#" onclick="toggleModal('loginModal'); toggleModal('signupModal'); return false;">로그인 하기</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--초대 폼 보여주기 --------------------->
+<div class="modalConcept modalProfile" id="modalCome">
+  <div class="modal-dialog" role="document">
+    <div class="modalContent">
+      <div id="roomLink">
+        <button type="button" class="btn btn-success" id="comeButton">
+          링크복사
+        </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        onclick="toggleModal('modalCome')"
+      >
+        닫기
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<!--방 합치기 폼 보여주기 --------------------->
+<div class="modalConcept modalProfile" id="modalLinkRoom">
+  <div class="modal-dialog" role="document">
+    <div class="modalContent">
+      <div id="roomLink">
+        <form id="roomLinkForm">
+          <div class="form-group">
+          <input
+            id="roomLink"
+            type="text"
+            name="roomLink"
+            placeholder="링크 입력"
+            minlength="1"
+          />
+        </div>
+          <div class="form-group">
+            <label for="roomName">방이름</label>
+            <input type="text" id="newLinkRoomName" name="linkRoomName" class="form-control" />
+        </div>
+          <input id="roomSubmit" type="submit" value="방 합치기" />
+        </form>
+      </div>
+      <button type="button" class="btn btn-success" id="copyLinkButton">
+        링크복사
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        id="linkend"
+        onclick="toggleModal('modalLinkRoom')"
+      >
+        닫기
+      </button>
+    </div>
+  </div>
+</div>
+<!--방 생성 폼 보여주기 --------------------->
+<div class="modalConcept modalProfile" id="modalCreateRoom">
+  <div class="modal-dialog" role="document">
+    <div class="modalContent">
+      <div id="roomInsert">
+        <form id="roomInsertForm">
+          <input
+            id="roomInput"
+            type="text"
+            name="room_name"
+            placeholder="최대 5글자 입력"
+            minlength="1"
+          />
+          <input id="roomSubmit" type="submit" value="방 생성" />
+        </form>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-danger"
+        onclick="toggleModal('modalCreateRoom')"
+      >
+        닫기
+      </button>
+    </div>
+  </div>
+</div>
+<!--큰 방 생성 폼 보여주기 --------------------->
+<div class="modalConcept modalProfile" id="modalCreateBigRoom">
+  <div class="modal-dialog" role="document">
+      <div class="modalContent">
+
+          <div id="roomInsert">
+              <form id="bigInsertForm">
+                  <input 
+                    id="bigInput" 
+                    type="text" 
+                    name="room_name" 
+                    placeholder="최대 5글자 입력" 
+                    minlength="1">
+                  <input 
+                    id="bigSubmit" 
+                    type="submit" 
+                    value="큰 방 생성">
+              </form>
+          </div>
+          
+          <button 
+            type="button" 
+            class="btn btn-danger" 
+            onclick="toggleModal('modalCreateBigRoom')"
+            >
+            닫기
+          </button>
+      </div>
+  </div>
+</div>
+<!--큰 방 생성 폼 끝 --------------------->
+
+<!-- 프로필 변경 폼 -->
+<div class="modalConcept modalProfile" id="changeProfileModal">
+  <div class="modal-dialog" role="document">
+    <div class="modalContent">
+      <!-- 입력 폼 -->
+      <form id="changeProfileForm" method="post">
+        <div class="profile-section">
+          <!-- 버튼 클릭해서 사진 파일 열기 -->
+          <input type="file" id="fileInput" onchange="changeProfileImage()" style="display: none" />
+          <img src="https://cdn2.iconfinder.com/data/icons/seo-and-marketing-glyph-6/32/94-512.png" id="rotateChange"
+            onclick="triggerFileInput()" />
+          <h2 id="profileName">프로필 수정</h2>
+        </div>
+        <div class="form-group">
+          <label for="change-nameInput">이름</label>
+          <input type="text" id="changeProfileNameInput" name="name" placeholder="새 이름을 입력하세요" class="form-control validate[required]"/>
+        </div>
+        <!-- 변경, 닫기 버튼 -->
+        <button type="button" class="btn btn-success salvar" id="change-saveProfile" onclick="saveChangedProfile()">
+          <i class="fa fa-check" aria-hidden="true"></i> 변경
+        </button>            
+         <!-- 여기에 적당한 공간 추가 -->
+
+        <button type="button" class="btn btn-danger" id="logout" >
+          로그아웃
+        </button>
+        
+       
+        
+        <button type="button" class="btn btn-danger" id="prend" onclick="toggleModal('changeProfileModal')">
+          닫기
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+.spacer {
+  height: 40px; /* 공간의 높이 조정 */
+}
+</style>
+

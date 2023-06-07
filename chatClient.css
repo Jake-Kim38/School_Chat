@@ -1,0 +1,508 @@
+#firstArea {
+  width: 100%;
+  height: 100%;
+  background-color: #1c1c1c;
+  order: 3;
+}
+
+#profileArea {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#profileButtons {
+  width: 50%;
+  height: 15vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#profileButtons {
+  width: 50%;
+  height: 15vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#profileButtons div {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: red;
+  cursor: pointer;
+}
+
+#profileButtons div:first-child {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background-color: aliceblue;
+}
+
+#profileRightArea {
+  width: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*공유버튼 css */
+#shareButton {
+  cursor: pointer;
+  background-color: #4285f4;
+  color: white;
+  font-weight: bold;
+  border-radius: 10%;
+}
+
+#settingButton {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 55px;
+}
+
+/*작은 방, 큰 방 (집 모양)*/
+#leftArea {
+  position: absolute;
+  bottom: 0;
+  width: 10%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+#home {
+  position: absolute;
+  bottom: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+#secondArea {
+  width: 90%;
+  height: 85%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #343434;
+  order: 2;
+}
+
+#secondTop {
+  width: 100%;
+  height: 6vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#groupName {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 1%;
+}
+
+#quitButton {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+#secondLeft {
+  position: absolute;
+  bottom: 0;
+  width: 20%;
+  height: 90%;
+}
+
+#roomArea {
+  width: 100%;
+  height: 95%;
+  background-color: #343434;
+  display: flex;
+  flex-direction: column;
+}
+
+#roomsArea {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 95%;
+}
+
+#roomTitleArea {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  order: -2;
+  font-weight: bold;
+  color: white;
+}
+
+#bigRooms {
+  background-color: #343434;
+  width: 45%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+#linkedRooms {
+  background-color: #343434;
+  width: 45%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+#bigRooms::-webkit-scrollbar {
+  display: none;
+}
+
+#linkedRooms::-webkit-scrollbar {
+  display: none;
+}
+
+#secondOptionSection {
+  width: 100%;
+  height: 3vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 8%;
+}
+
+#message {
+  position: absolute;
+  right: 0;
+  bottom: 5%;
+  background-color: #414141;
+  color: white;
+  width: 70%;
+  height: 70vh;
+  overflow-y: auto;
+  word-wrap: break-word;
+  order: 2;
+}
+
+#chatInput {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  height: 5vh;
+  background-color: #646464;
+}
+
+#txtChat {
+  position: absolute;
+  bottom: 40%;
+  padding: 1px;
+  margin-left: 3%;
+  width: 80%;
+  background-color: #646464;
+  color: white;
+  border: none;
+}
+
+#txtChat::placeholder {
+  color: white;
+  font-weight: bold;
+}
+
+#roomOptions {
+  position: absolute;
+  bottom: 5%;
+  background-color: #343434;
+  width: 100%;
+  height: 90%;
+  order: 2;
+  overflow-y: scroll;
+}
+
+#roomOptions::-webkit-scrollbar {
+  display: none;
+}
+
+/*"방 생성" 입력폼 css */
+#roomInsert {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+}
+#roomInsertForm {
+  display: flex;
+  align-items: center;
+  justify-content: center; /*입력 폼가운데로 배치*/
+}
+
+#roomInput {
+  width: 200px; /* 원하는 너비 값으로 변경 */
+  height: 50px; /* 원하는 높이 값으로 변경 */
+  padding: 5px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+#roomSubmit {
+  width: 100px; /* 원하는 너비 값으로 변경 */
+  height: 50px; /* 원하는 높이 값으로 변경 */
+  margin-left: 5px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#roomOptions {
+  position: absolute;
+  bottom: 10%;
+  background-color: #1c1c1c;
+  width: 100%;
+  height: 90%;
+  order: 2;
+  overflow-y: scroll;
+}
+
+#roomOptions::-webkit-scrollbar {
+  display: none;
+}
+
+/*프로필 변경 css ----------------------------------------*/
+body {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+/*동그란 프로필 모양*/
+.profile {
+  display: flex;
+  cursor: pointer;
+}
+
+#profileImage {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 70px;
+  cursor: pointer;
+}
+#rotateChange {
+  width: 50px;
+  cursor: pointer;
+}
+.modalConcept {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modalConcept.modalProfile.on {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-dialog {
+  position: relative;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalContent header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modalContent header h2 {
+  margin-left: 10px;
+}
+
+.modalContent form {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modalContent .form-group {
+  margin-bottom: 20px;
+}
+
+.modalContent .form-group label {
+  font-weight: bold;
+}
+
+.modalContent button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modalContent .btn-success {
+  background-color: #28a745;
+}
+
+.modalContent .btn-danger {
+  background-color: #dc3545;
+}
+
+.modalContent .btn i {
+  margin-right: 5px;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-section #profileImage {
+  margin-bottom: 10px;
+}
+
+.profile-section #profileName {
+  font-weight: bold;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*빙글 빙글 애니메이션 */
+.profile-section #rotateChange.animated {
+  animation: rotate 1s linear infinite;
+}
+
+.profile-section #rotateChange:hover {
+  animation: rotate 1s linear infinite;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #f1f1f1;
+  background-clip: padding-box;
+  border: none;
+  border-radius: 16px;
+  margin-bottom: 1rem; /* 여백 추가 */
+  box-sizing: border-box; /* 박스 모델 설정 */
+}
+
+.form-control:focus {
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/*로그인, 회원가입 폼 나타내기*/
+.fade-in {
+  animation: fade-in 0.6s ease-in-out;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
